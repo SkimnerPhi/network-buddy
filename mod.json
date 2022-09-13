@@ -1,0 +1,23 @@
+{
+    "entry": "main.js",
+    "id": "network-buddy",
+    "version": "0.1.3",
+    "name": "Network Buddy",
+    "author": "SkimnerPhi",
+    "description": "Library mod for adding new components to the wires network",
+    "minimumGameVersion": ">=1.5.0",
+    "doesNotAffectSavegame": true,
+    "extra": {
+      "authors": [
+        {
+          "name": "SkimnerPhi",
+          "icon": "https://avatars.githubusercontent.com/u/69558934",
+          "website": "https://skimnerphi.net"
+        }
+      ],
+      "library": true,
+      "readme": "<p>Completely overhauls network calculation to provide compatibility between mods that add 0-tick connections such as insulators and passthroughs.</p>",
+      "updateURL": "https://skimnerphi.net/api/v1/manifest/network-buddy"
+    },
+    "website": "https://skimnerphi.net/mods/network-buddy"
+}
