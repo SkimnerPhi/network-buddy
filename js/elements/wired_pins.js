@@ -1,4 +1,5 @@
 import { enumInvertedDirections } from "shapez/core/vector";
+import { enumWireVariant } from "shapez/game/components/wire";
 import { WiredPinsComponent, enumPinSlotType } from "shapez/game/components/wired_pins";
 import { NetworkElement } from "../network_element";
 
@@ -29,7 +30,7 @@ export class WiredPinsElement extends NetworkElement {
         const staticComp = entity.components.StaticMapEntity;
         const slot = metadata.slot;
         if (slot.linkedNetwork) {
-            return;
+            return null;
         }
 
         if (slot.type === enumPinSlotType.logicalEjector) {
@@ -67,5 +68,30 @@ export class WiredPinsElement extends NetworkElement {
                 return { entity, metadata };
             }
         }
+    }
+
+    computeWireEdgeStatus({ wireVariant, tile, edge }, entity) {
+        if (!enumWireVariant[wireVariant]) {
+            return false;
+        }
+
+        const pinComp = entity.components.WiredPins;
+        const staticComp = entity.components.StaticMapEntity;
+
+        for (const pinSlot of pinComp.slots) {
+            const pinLocation = staticComp.localTileToWorld(pinSlot.pos);
+            const pinDirection = staticComp.localDirectionToWorld(pinSlot.direction);
+
+            if (!pinLocation.equals(tile)) {
+                continue;
+            }
+            if (pinDirection !== edge) {
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
     }
 }

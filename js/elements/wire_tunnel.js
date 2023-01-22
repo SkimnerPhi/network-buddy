@@ -1,4 +1,5 @@
 import { enumDirectionToVector } from "shapez/core/vector";
+import { enumWireVariant } from "shapez/game/components/wire";
 import { WireTunnelComponent } from "shapez/game/components/wire_tunnel";
 import { NetworkElement } from "../network_element";
 
@@ -20,7 +21,7 @@ export class WireTunnelElement extends NetworkElement {
         const offset = enumDirectionToVector[direction];
         
         if (visitedTunnels.has(entity.uid)) {
-            return;
+            return null;
         }
 
         const staticComp = entity.components.StaticMapEntity;
@@ -49,5 +50,13 @@ export class WireTunnelElement extends NetworkElement {
         visitedTunnels.add(entity.uid);
 
         return null;
+    }
+    computeWireEdgeStatus({ wireVariant }) {
+        if (!enumWireVariant[wireVariant]) {
+            return false;
+        }
+
+        // Wires connect to all sides
+        return true;
     }
 }

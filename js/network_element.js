@@ -25,4 +25,5 @@ export class NetworkElement {
         contents,
         visitedTunnels,
     }) {}
+    computeWireEdgeStatus({ wireVariant, tile, edge }, entity) {}
 }

@@ -43,8 +43,6 @@ export function patchWireSystem(manager) {
             }
         },
         findNetworkForEjector(initialEntity, metadata = {}) {
-            console.log("searching for network");
-
             let currentNetwork = new WireNetwork();
             const entitiesToVisit = [
                 {
@@ -184,7 +182,6 @@ export function patchWireSystem(manager) {
                             }
 
                             const metaBuilding = element.metaBuilding;
-                            console.log(metaBuilding);
                             if (!metaBuilding) {
                                 continue;
                             }

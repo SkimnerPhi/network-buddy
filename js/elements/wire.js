@@ -15,10 +15,10 @@ export class WireElement extends NetworkElement {
     tryToLinkNetwork(network, entity, metadata) {
         const wireComp = entity.components.Wire;
         if (wireComp.linkedNetwork) {
-            return;
+            return null;
         }
         if (metadata.variantMask && wireComp.variant !== metadata.variantMask) {
-            return;
+            return null;
         }
 
         wireComp.linkedNetwork = network;
@@ -40,5 +40,12 @@ export class WireElement extends NetworkElement {
         ) {
             return { entity,  metadata };
         }
+    }
+
+    computeWireEdgeStatus({ wireVariant }, entity) {
+        const wireComp = entity.components.Wire;
+        
+        // Wires will connect in any direction as long as they are the same color
+        return wireComp.variant === wireVariant;
     }
 }
