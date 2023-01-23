@@ -47,8 +47,8 @@ export class NetworkElement {
      * Purges all linked networks from the component
      * @param {Component} comp 
      */
-
     clearNetworks(comp) {}
+
     /** 
      * Find new networks for signal emmiters, such as in the case of WiredPin ejectors
      * @param {WireSystem} wireSystem
@@ -94,8 +94,8 @@ export class NetworkElement {
      * Get if a wire should connect to the specified edge of the component
      * @param {Object} param0 
      * @param {enumWireType} param0.wireVariant
-     * @param {Vector} tile
-     * @param {enumDirection} edge
+     * @param {Vector} param0.tile
+     * @param {enumDirection} param0.edge
      * @param {Entity} entity 
      * @returns boolean
      */
