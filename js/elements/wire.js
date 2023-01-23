@@ -48,4 +48,14 @@ export class WireElement extends NetworkElement {
         // Wires will connect in any direction as long as they are the same color
         return wireComp.variant === wireVariant;
     }
+
+    getEntityWireNetworks(entity, tile, networks) {
+        const wireComp = entity.components.Wire;
+
+        if (wireComp.linkedNetwork) {
+            networks.add(wireComp.linkedNetwork);
+        }
+        
+        return true;
+    }
 }

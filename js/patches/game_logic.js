@@ -29,6 +29,26 @@ export function patchGameLogic(manager) {
             }
 
             return false;
+        },
+        getEntityWireNetworks(entity, tile) {
+            let canConnectAtAll = false;
+
+            const networks = new Set();
+            
+            for (const id in manager.elements) {
+                if (!entity.components[id]) {
+                    continue;
+                }
+
+                const element = manager.elements[id];
+                canConnectAtAll ||= element.getEntityWireNetworks(entity, tile, networks);
+            }
+
+            if (!canConnectAtAll) {
+                return null;
+            }
+
+            return Array.from(networks);
         }
     }));
 }

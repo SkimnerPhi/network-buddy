@@ -1,7 +1,7 @@
 {
     "entry": "main.js",
     "id": "network-buddy",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "name": "Network Buddy",
     "author": "SkimnerPhi",
     "description": "Library mod for adding new components to the wires network",

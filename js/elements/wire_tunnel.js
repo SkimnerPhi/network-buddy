@@ -59,4 +59,14 @@ export class WireTunnelElement extends NetworkElement {
         // Wires connect to all sides
         return true;
     }
+
+    getEntityWireNetworks(entity, tile, networks) {
+        const tunnelComp = entity.components.WireTunnel;
+
+        for (const linkedNetwork of tunnelComp.linkedNetworks) {
+            networks.add(linkedNetwork);
+        }
+        
+        return true;
+    }
 }

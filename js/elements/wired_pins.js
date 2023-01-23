@@ -94,4 +94,23 @@ export class WiredPinsElement extends NetworkElement {
 
         return false;
     }
+
+    getEntityWireNetworks(entity, tile, networks) {
+        let canConnectAtAll = false;
+
+        const pinComp = entity.components.WiredPins;
+        const staticComp = entity.components.StaticMapEntity;
+
+        for (const slot of pinComp.slots) {
+            const slotLocalPos = staticComp.localTileToWorld(slot.pos);
+            if (slotLocalPos.equals(tile)) {
+                canConnectAtAll = true;
+                if (slot.linkedNetwork) {
+                    networks.add(slot.linkedNetwork);
+                }
+            }
+        }
+
+        return canConnectAtAll;
+    }
 }
