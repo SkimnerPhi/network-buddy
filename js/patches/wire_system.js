@@ -69,13 +69,21 @@ export function patchWireSystem(manager) {
                     const metadata = Object.assign({}, nextData.metadata);
 
                     const element = manager.elements[id];
-                    const result = element.tryToLinkNetwork(
+                    let results = element.tryToLinkNetwork(
                         currentNetwork,
                         nextEntity,
                         metadata,
                     );
 
-                    if (result?.tile) {
+                    if (!results) {
+                        continue;
+                    }
+
+                    if (!(results instanceof Array) {
+                        results = [results];
+                    }
+
+                    for (const result of results) {
                         const newTargets = this.findSurroundingWireTargets(
                             result.tile,
                             result.directions ?? [],
